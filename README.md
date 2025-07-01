@@ -39,7 +39,7 @@ Now, you can clone this repo with:
 ```
 git clone https://github.com/Giremuu/WSL-Setup_Configuration.git
 ```
-Make the script executable:
+Go in "WSL-Setup_Configuration/Scripts_sh" and make the script executable:
 ```
 chmod +x Post-Install_WSL.sh
 ```
