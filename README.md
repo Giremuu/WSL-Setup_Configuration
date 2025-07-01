@@ -31,11 +31,15 @@ wsl -d Ubuntu
 
 ## STEP 3 - Configure Ubuntu and Debian
 After installing Ubuntu and Debian, you can configure both distributions by running the provided shell script.
-Open your WSL terminal (Ubuntu or Debian) and run:
+Firstly, you need to install git on your WSL terminal:
 ```
-curl -O https://raw.githubusercontent.com/Giremuu/WSL-Setup_Configuration/main/Scripts_sh/Post-Install_WSL.sh
+apt-get install git -y
 ```
-Now, make the script executable:
+Now, you can clone this repo with:
+```
+git clone https://github.com/Giremuu/WSL-Setup_Configuration.git
+```
+Make the script executable:
 ```
 chmod +x Post-Install_WSL.sh
 ```
