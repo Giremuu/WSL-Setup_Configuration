@@ -1,6 +1,6 @@
 # WSL Setup & Configuration Script
-This repository contains scripts to install and configure Windows Subsystem for Linux (WSL).
-It sets WSL 2 as the default version, installs Ubuntu and Debian, and sets Ubuntu as the default distribution. Useful for quickly setting up a development environment on Windows.
+This repository contains legacy scripts (2024) to install and configure Windows Subsystem for Linux (WSL).
+It sets WSL 2 as the default version, installs Ubuntu and Debian, and configures Ubuntu as the default distribution. This project was created to quickly bootstrap a development environment on Windows for personal use and for classmates.
 
 
 ## STEP 1 - Active features to install WSL 2
