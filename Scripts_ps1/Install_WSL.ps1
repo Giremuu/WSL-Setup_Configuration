@@ -1,15 +1,17 @@
-﻿# ========================== ========================== ==========================
+﻿# ==============================================================================
 # WSL 2 Installation Script with Ubuntu (default) and Debian
-# ========================== ========================== ==========================
+# ==============================================================================
 
-# Update WSL
+param(
+  [string[]]$Distros = @('Ubuntu','Debian'),      # Change this to install other distro
+  [string]$DefaultDistro = 'Ubuntu'
+)
+
 wsl --update
-
-# Set WSL 2 as the default version
 wsl --set-default-version 2
 
-# Install Ubuntu
-wsl --install -d Ubuntu
+foreach ($d in $Distros) {
+  wsl --install -d $d
+}
 
-# Install Debian
-wsl --install -d Debian
+wsl --set-default $DefaultDistro
