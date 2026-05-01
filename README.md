@@ -1,55 +1,95 @@
-# WSL Setup & Configuration Script
-This repository contains legacy scripts (2024) to install and configure Windows Subsystem for Linux (WSL).
-It sets WSL 2 as the default version, installs Ubuntu and Debian, and configures Ubuntu as the default distribution. This project was created to quickly bootstrap a development environment on Windows for personal use and for classmates.
+# WSL-Setup_Configuration
 
+![License](https://img.shields.io/badge/license-MIT-yellow)
+![Stack](https://img.shields.io/badge/stack-PowerShell%20%7C%20Bash-lightgrey)
 
-## STEP 1 - Active features to install WSL 2
-In PowerShell (as Administrator), run this:
+Legacy scripts (2024) to install and configure WSL 2 on Windows. Sets WSL 2 as the default version, installs Ubuntu and Debian, then configures the shell environment. Written to bootstrap a dev environment quickly - originally shared with classmates.
+
+---
+
+## Overview
+
+```mermaid
+flowchart LR
+    A["Step 1 - Enable Windows features (PowerShell admin)"] --> B["Step 2 - Install WSL 2 + Ubuntu + Debian (Install_WSL.ps1)"]
+    B --> C["Step 3 - Post-install config (Post-Install_WSL.sh)"]
 ```
+
+### Project structure
+
+```
+WSL-Setup_Configuration/
+├── Scripts_ps1/
+│   └── Install_WSL.ps1     - WSL 2 install, Ubuntu + Debian, set default distro
+└── Scripts_sh/
+    └── Post-Install_WSL.sh - System update, base tools, custom prompt, neofetch
+```
+
+---
+
+## Usage
+
+### Step 1 - Enable Windows features
+
+In PowerShell as Administrator:
+
+```powershell
 dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
 ```
-🔁 Reboot your PC right after running these commands.
 
+Reboot after running these commands.
 
-## STEP 2 - Install WSL 2
-Download the file **_Scripts_ps1/Install_WSL.ps1_** and run it using PowerShell (as Administrator). This script will install WSL 2 with Ubuntu as the default distribution, along with Debian. You will be prompted to create your UNIX username and password directly in the PowerShell window, so make sure to pay attention.
+### Step 2 - Install WSL 2
 
-Ubuntu and Debian will be installed using the latest available versions from the Microsoft Store. To set Debian as the default distribution, run the following command in PowerShell:
+Download and run `Scripts_ps1/Install_WSL.ps1` in PowerShell as Administrator.
+
+```powershell
+.\Install_WSL.ps1
 ```
+
+Installs WSL 2 with Ubuntu (default) and Debian. You will be prompted to create your UNIX username and password in the terminal.
+
+Useful commands after install:
+
+```powershell
+# List installed distributions
+wsl -l -v
+
+# Launch a specific distro
+wsl -d Ubuntu
+wsl -d Debian
+
+# Change default distro
 wsl --set-default Debian
 ```
-To view all your installed WSL distributions, run:
-```
-wsl -l -v
-```
-To launch Ubuntu, run:
-```
-wsl -d Ubuntu
-```
 
+### Step 3 - Post-install configuration
 
-## STEP 3 - Configure Ubuntu and Debian
-After installing Ubuntu and Debian, you can configure both distributions by running the provided shell script.
-Firstly, you need to install git on your WSL terminal:
-```
+Inside your WSL terminal:
+
+```bash
 apt-get install git -y
-```
-Now, you can clone this repo with:
-```
 git clone https://github.com/Giremuu/WSL-Setup_Configuration.git
-```
-Go in "WSL-Setup_Configuration/Scripts_sh" and make the script executable:
-```
+cd WSL-Setup_Configuration/Scripts_sh
 chmod +x Post-Install_WSL.sh
-```
-And run it:
 ./Post-Install_WSL.sh
+```
 
-
-#### This script will:
-- Update the system
-- Install essential tools (curl, htop, neofetch, etc.)
-- Create a default ~/scripts-utils folder
-- Set a custom prompt
+The script will:
+- Update and upgrade the system
+- Install base tools: `curl`, `wget`, `git`, `neofetch`, `htop`, `net-tools`, `dnsutils`, `nmap`, `whois`, `unzip`, `vim`
+- Set a custom bash prompt
 - Enable neofetch at shell startup
+
+Reload the shell after:
+
+```bash
+source ~/.bashrc
+```
+
+---
+
+## License
+
+MIT
